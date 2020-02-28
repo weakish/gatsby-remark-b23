@@ -1,0 +1,49 @@
+{
+    "name": "gatsby-remark-magic",
+    "version": "1.0.0",
+    "description": "A markdown embedded code transformer for gatsby just like magic.",
+    "main": "index.js",
+    "author": "tizee",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "lint": "eslint .",
+        "prettier": "prettier \"src/**/*.js\"",
+        "format": "yarn prettier --write",
+        "validate": "yarn lint --fix && yarn prettier --list-different && yarn test",
+        "build": "./node_modules/.bin/babel src --out-dir dist --ignore 'src/__tests__/'",
+        "dev": "jest --watch",
+        "test": "jest --coverage",
+        "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    },
+    "jest": {
+        "verbose": true,
+        "testEnvironment": "node",
+        "coverageDirectory": "coverage",
+        "notify": true,
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/__tests__/utils/",
+            "/__tests__/__mocks__/"
+        ]
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.8.4",
+        "@babel/preset-env": "^7.8.6",
+        "babel-jest": "^25.1.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-jest": "^23.8.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "jest": "^25.1.0",
+        "prettier": "^1.19.1",
+        "remark": "^11.0.2"
+    },
+    "peerDependencies": {
+        "gatsby": "^2.19.22"
+    },
+    "dependencies": {
+        "unist-util-visit": "^2.0.2"
+    }
+}
