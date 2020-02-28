@@ -33,5 +33,5 @@ export const getHtml = urlStr => {
     if (src == null) {
         return null;
     }
-    return `<iframe src="${src}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>`;
+    return `<iframe width="100%" height="400" src="${src}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>`;
 };

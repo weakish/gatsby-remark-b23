@@ -1,6 +1,6 @@
 {
     "name": "gatsby-remark-magic",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A markdown embedded code transformer for gatsby just like magic.",
     "main": "index.js",
     "author": "tizee",
@@ -41,7 +41,7 @@
         "remark": "^11.0.2"
     },
     "peerDependencies": {
-        "gatsby": "^2.19.22"
+        "gatsby": "^2.19.17"
     },
     "dependencies": {
         "unist-util-visit": "^2.0.2"

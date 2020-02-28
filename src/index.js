@@ -27,11 +27,8 @@ const transform = (cache, urlStr, node, transformations) => {
     return;
 };
 
-export default async (
-    { cache, markdownAST },
-    pluginOptions = { prefix: null }
-) => {
-    const { prefix } = pluginOptions;
+export default async ({ cache, markdownAST }, pluginOptions) => {
+    const prefix = pluginOptions.prefix ? pluginOptions.prefix : null;
     const transformations = [];
     if (!prefix) {
         visit(markdownAST, `paragraph`, paragraphNode => {
@@ -49,18 +46,25 @@ export default async (
             }
             const { url } = node;
             const urlStr = getUrl(url);
-            if (!urlStr) {
+            if (urlStr === null) {
                 return;
             }
             transform(cache, urlStr, node, transformations);
         });
     } else {
         visit(markdownAST, `inlineCode`, node => {
-            const url = node.value.split(prefix).pop();
-            if (url) {
-                let urlStr = getUrl(url);
-                transform(cache, urlStr, node, transformations);
+            const tokens = node.value.split(prefix);
+            if (tokens.length !== 2) {
+                return;
             }
+            if (tokens[0] !== '') {
+                return;
+            }
+            let urlStr = getUrl(tokens.pop());
+            if (urlStr === null) {
+                return;
+            }
+            transform(cache, urlStr, node, transformations);
         });
     }
     await Promise.all(transformations.map(tf => tf()));
