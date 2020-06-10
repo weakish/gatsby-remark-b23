@@ -12,7 +12,7 @@ export const mockCache = mockedCache =>
 const mdPath = `${__dirname}/../__mocks__`;
 
 const readMdFile = fileName =>
-    readFileSync(`${mdPath}/${fileName}.md`, { encoding: `utf-8` });
+    readFileSync(`${mdPath}/${fileName}.md`, { encoding: 'utf-8' });
 
 export const getMdAST = fileName => remark.parse(readMdFile(fileName));
 

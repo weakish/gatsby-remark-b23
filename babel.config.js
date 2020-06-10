@@ -1,17 +1,17 @@
 const presets = [
     [
-        `@babel/preset-env`,
+        '@babel/preset-env',
         {
             targets: {
-                node: `current`
+                node: 'current'
             }
         }
     ]
 ];
 
-const ignore = [`./src/__tests__`];
+const ignore = ['./src/__tests__'];
 module.exports = api => {
-    const isTest = api.env(`test`);
+    const isTest = api.env('test');
     if (isTest) {
         return {
             presets

@@ -1,31 +1,49 @@
 export const isTarget = urlStr => {
+    urlStr = urlStr.toLowerCase();
     const { host, pathname } = new URL(urlStr);
     return (
-        (host === `b23.tv` ||
+        (host === 'b23.tv' ||
             [
-                `bilibili.tv`,
-                `www.bilibili.tv`,
-                `bilibili.com`,
-                `www.bilibili.com`
+                'bilibili.tv',
+                'www.bilibili.tv',
+                'bilibili.com',
+                'www.bilibili.com'
             ].includes(host)) &&
-        pathname.includes(`av`)
+        (pathname.includes('av') || pathname.includes('bv'))
     );
 };
 
 export const getPlayerSrc = urlStr => {
     const url = new URL(urlStr);
-    const page = Number.parseInt(url.searchParams.get(`p`));
-    const videoId = Number.parseInt(url.pathname.split(`/av`).pop());
-    if (Number.isNaN(videoId)) {
-        return null;
+    const page = Number.parseInt(url.searchParams.get('p'));
+    let aid;
+    if (/(av|Av)[0-9]/.test(url.pathname)) {
+        aid = /(av|AV)[0-9].*/
+            .exec(url.pathname)[0]
+            .split('av')
+            .pop();
     }
-    const playerUrl = new URL(
-        `https://player.bilibili.com/player.html?aid=${videoId}`
-    );
-    if (!Number.isNaN(page)) {
-        playerUrl.searchParams.append(`page`, page);
+    let bvid;
+    if (/(BV|bv)[0-9A-Za-z].*(\/|$)/.test(url.pathname)) {
+        bvid = /(BV|bv)[0-9A-Za-z].*(\/|$)/.exec(url.pathname)[0];
     }
-    return playerUrl.toString();
+    let playerUrl = new URL('https://player.bilibili.com/player.html');
+    // bvid first
+    if (bvid) {
+        playerUrl.searchParams.append('bvid', bvid);
+        if (!Number.isNaN(page)) {
+            playerUrl.searchParams.append('page', page);
+        }
+        return playerUrl.toString();
+    }
+    if (aid) {
+        playerUrl.searchParams.append('aid', aid);
+        if (!Number.isNaN(page)) {
+            playerUrl.searchParams.append('page', page);
+        }
+        return playerUrl.toString();
+    }
+    return null;
 };
 
 export const getHtml = urlStr => {

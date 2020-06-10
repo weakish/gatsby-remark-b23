@@ -23,8 +23,8 @@
         "notify": true,
         "testPathIgnorePatterns": [
             "/node_modules/",
-            "/__tests__/utils/",
-            "/__tests__/__mocks__/"
+            "./src/__tests__/utils/",
+            "./src/__tests__/__mocks__/"
         ]
     },
     "devDependencies": {
