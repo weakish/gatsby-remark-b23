@@ -6,19 +6,13 @@ const presets = [
                 node: 'current'
             }
         }
-    ]
+    ],
+    '@babel/preset-typescript',
+    'minify'
 ];
 
-const ignore = ['./src/__tests__'];
-module.exports = api => {
-    const isTest = api.env('test');
-    if (isTest) {
-        return {
-            presets
-        };
-    }
-    return {
-        presets,
-        ignore
-    };
+const ignore = ['./src/__tests__', './src/typings'];
+module.exports = {
+    presets,
+    ignore
 };

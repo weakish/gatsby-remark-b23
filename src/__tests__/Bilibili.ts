@@ -1,6 +1,7 @@
-import { isTarget, getHtml, getPlayerSrc } from '../transformer/Bilibili';
+import { isTarget, getHTML, getPlayerSrc } from '../transformer/Bilibili';
 import { cache, getMdAST, getMdfromAST } from './utils';
 import plugin from '..';
+import { MarkdownNode } from '../typings';
 
 describe('url aid', () => {
     test('non-Bilibili url', () => {
@@ -135,19 +136,23 @@ describe('playerSrc validation aid', () => {
 
 describe('PlayerIframe validation', () => {
     test('get correct iframe', async () => {
-        const html = getHtml('https://b23.tv/av15463995?p=2');
+        const html = getHTML('https://b23.tv/av15463995?p=2');
         expect(html).toMatchInlineSnapshot(
             '"<iframe width=\\"100%\\" height=\\"400\\" src=\\"https://player.bilibili.com/player.html?aid=15463995&page=2\\" scrolling=\\"no\\" border=\\"0\\" frameborder=\\"no\\" framespacing=\\"0\\" allowfullscreen=\\"true\\"> </iframe>"'
         );
     });
-    test('get null when video id is invalid', async () => {
-        const html = getHtml('https://b23.tv/avxxxx');
-        expect(html).toBe(null);
+    test('get null when video aid is invalid', async () => {
+        const html = getHTML('https://b23.tv/avxxxx');
+        expect(html).toBeUndefined();
+    });
+    test('get null when video bvid is invalid', async () => {
+        const html = getHTML('https://b23.tv/bv?:::::xxxx');
+        expect(html).toBeUndefined();
     });
 });
 
 test('Plugin validation without prefix', async () => {
-    const mdAST = getMdAST('Bilibili');
+    const mdAST = getMdAST('Bilibili') as MarkdownNode;
     const processedAST = await plugin({ cache, markdownAST: mdAST });
     expect(getMdfromAST(processedAST)).toMatchInlineSnapshot(`
 "<https://www.not-a-bilibili-url.com>
@@ -186,7 +191,7 @@ A random paragraph with \`inline code\` and [empty link](<>) dot.
 });
 
 test('Plugin validation with prefix embed', async () => {
-    const mdAST = getMdAST('Bilibili');
+    const mdAST = getMdAST('Bilibili') as MarkdownNode;
     const processedAST = await plugin(
         { cache, markdownAST: mdAST },
         { prefix: 'embed' }

@@ -1,0 +1,35 @@
+{
+    // more details on https://www.typescriptlang.org/v2/en/tsconfig
+    "compilerOptions": {
+        /* Compile Options */
+        "target": "ESNext", // Specify ECMAScript target version: "ES3" (default) "ES5" "ES6"/"ES2015" "ES2016" "ES2017" "ES2018" "ES2019" "ES2020" "ESNext"
+        "module": "CommonJS", // Specify module code generation: 'None', 'CommonJS', 'AMD', 'System', 'UMD', 'ES6', 'ES2015', 'ES2020' or 'ESNext'. Only 'AMD' and 'System' can be used in conjunction with --outFile.
+        "rootDir": "src", // Specifies the root directory of input files
+        "outDir": "build", // Redirect output structure to the directory.
+        "declaration": true, // Generates corresponding .d.ts file.
+        "removeComments": true, // Remove all comments except copy-right header comments beginning with /*!
+        "esModuleInterop": true, // Emit '__importStar' and '__importDefault' helpers for runtime babel ecosystem compatibility and enable '--allowSyntheticDefaultImports' for typesystem compatibility.
+        "lib": ["es6", "es7", "esnext", "DOM"], // List of library files to be included in the compilation
+        "sourceMap": true, // Generates corresponding .map file.
+        "allowJs": false, // Allow javascript files to be compiled.
+        "noEmit": true,
+        "isolatedModules": true,
+        /* Type checking Options */
+        "strict": true, // Enable all strict type checking options.
+        "strictNullChecks": true, // Enable strict null checks
+        /* Linter Checks */
+        "noImplicitReturns": true, // Report error when not all code paths in function return a value.
+        "noImplicitThis": true, // Raise error on 'this' expressions with an implied any type.
+        "noImplicitAny": true, // Warn on expressions and declarations with an implied 'any' type.
+        /* React Options */
+        // "jsx": "react", // Support JSX in .tsx files: "react", "preserve", "react-native".
+        // "jsxFactory": "React.createElement", // Specify the JSX factory function to use when targeting react JSX emit, e.g. React.createElement or h.
+        /* Module Resolution */
+        "moduleResolution": "Node", // "Node" for Node.js/io.js style resolution, or "Classic".
+        /* Command line Options */
+        "pretty": true
+    },
+    "compileOnSave": false,
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "src/__tests__"]
+}
