@@ -1,11 +1,22 @@
 {
-    "name": "gatsby-plugin-embedb23",
+    "name": "gatsby-remark-b23",
     "version": "0.0.1",
-    "description": "Transform bilibili link in embedded code in markdown file to bilibili player",
+    "description": "Transform bilibili video link to bilibili player in gatsby-transformer-remark",
     "main": "index.js",
     "author": "tizee",
     "license": "MIT",
-    "private": true,
+    "keywords": [
+        "gatsby",
+        "gatsby-plugin",
+        "gatsby-remark",
+        "bilibili"
+    ],
+    "private": false,
+    "typings": "dist/typings/index.d.js",
+    "files": [
+        "dist",
+        "index.js"
+    ],
     "scripts": {
         "ts-check": "tsc --noEmit",
         "ts-check:watch": "tsc --noEmit --watch",
@@ -14,7 +25,7 @@
         "prettier": "prettier \"src/**/*.ts\"",
         "format": "yarn prettier --write",
         "validate": "yarn lint --fix && yarn prettier --list-different && yarn test",
-        "build": "babel src --out-dir dist --extensions '.ts'",
+        "build": "rollup -c",
         "dev": "jest --watch",
         "test": "jest --coverage",
         "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
@@ -35,6 +46,8 @@
         "@babel/preset-env": "^7.8.6",
         "@babel/preset-typescript": "^7.10.1",
         "@commitlint/config-angular": "^9.1.1",
+        "@rollup/plugin-babel": "^5.1.0",
+        "@rollup/plugin-node-resolve": "^8.4.0",
         "@types/jest": "^26.0.0",
         "@types/node": "^14.0.13",
         "@types/unist": "^2.0.3",
@@ -51,6 +64,7 @@
         "jest": "^25.1.0",
         "prettier": "^1.19.1",
         "remark": "^11.0.2",
+        "rollup": "^2.23.0",
         "typescript": "^3.9.5"
     },
     "peerDependencies": {
