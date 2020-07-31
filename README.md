@@ -1,5 +1,5 @@
 <div align="center">
-<h3>gatsby-remark-b23</h3>
+<h3>gatsby-remark-bilibili</h3>
 <p>Transform bilibili video link to embed bilibili video playar<p>
 </div>
 

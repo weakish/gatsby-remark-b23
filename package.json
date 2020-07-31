@@ -1,5 +1,5 @@
 {
-    "name": "gatsby-remark-b23",
+    "name": "gatsby-remark-bilibili",
     "version": "0.0.1",
     "description": "Transform bilibili video link to bilibili player in gatsby-transformer-remark",
     "main": "index.js",
