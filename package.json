@@ -12,7 +12,6 @@
         "bilibili"
     ],
     "private": false,
-    "typings": "dist/typings/index.d.js",
     "files": [
         "dist",
         "index.js"
