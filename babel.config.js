@@ -7,12 +7,9 @@ const presets = [
             }
         }
     ],
-    '@babel/preset-typescript',
-    'minify'
+    '@babel/preset-typescript'
 ];
 
-const ignore = ['./src/__tests__', './src/typings'];
 module.exports = {
-    presets,
-    ignore
+    presets
 };
