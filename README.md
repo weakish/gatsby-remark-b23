@@ -9,6 +9,12 @@ Inspired by [gatsby-remark-ombed](https://github.com/raae/gatsby-remark-oembed) 
 
 ### Usage
 
+#### Install
+
+```sh
+npm install --save gatsby-remark-bilibili
+```
+
 #### Use gatsby-transformer-remark
 
 ```js
@@ -17,7 +23,7 @@ Inspired by [gatsby-remark-ombed](https://github.com/raae/gatsby-remark-oembed) 
     options: {
       plugins: [
         {
-          resolve: `@tizee/gatsby-remark-b23`,
+          resolve: `gatsby-remark-bilibili`,
           options: {
               prefix: "embed"
           }
